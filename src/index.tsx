@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from './Home';
+import Podcast from './Podcasts';
+import MovieList from './Movies';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
