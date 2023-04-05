@@ -1,10 +1,19 @@
 // This is the page that lists out the movies in table form imported from the MovieData.json file
 
-import data from "./MovieData.json"
-
-const movieData = data.MovieData;
+import { useEffect, useState } from "react";
+import { Movie } from "./movie/movie";
 
 function MovieList () {
+const [movieData, setMovieData] = useState<Movie[]>([]);
+
+useEffect(() => {
+const fetchMovie = async () => {
+  const rsp = await fetch('https://localhost:4000/movie');
+  const temp = await rsp.json();
+  setMovieData(temp);
+};
+fetchMovie();
+}, []);
 
   return (
     <>
@@ -22,17 +31,21 @@ function MovieList () {
                 <th>Rating</th>
                 <th>Category</th>
                 <th>Edited</th>
+                <th>Lent To</th>
+                <th>Notes</th>
             </tr>
           </thead>
           <tbody>
             {movieData.map((m) => (
-            <tr>
-              <td>{m.Title}</td>
-              <td>{m.Year}</td>
-              <td>{m.Director}</td>
-              <td>{m.Rating}</td>
-              <td>{m.Category}</td>
-              <td>{m.Edited}</td>
+            <tr key={m.movieId}>
+              <td>{m.title}</td>
+              <td>{m.year}</td>
+              <td>{m.director}</td>
+              <td>{m.rating}</td>
+              <td>{m.category}</td>
+              <td>{m.edited}</td>
+              <td>{m.lentTo}</td>
+              <td>{m.notes}</td>
             </tr>
             ))}
            
